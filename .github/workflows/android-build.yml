@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: read
@@ -22,35 +22,35 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-          cache: gradle
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android SDK 34
+      - name: Install Android SDK
         run: |
           sdkmanager "platforms;android-34" "build-tools;34.0.0"
 
-      - name: Verify Gradle wrapper
-        run: |
-          chmod +x gradlew
-          test -f gradle/wrapper/gradle-wrapper.jar
-          grep "gradle-9.5-bin.zip" gradle/wrapper/gradle-wrapper.properties
-          ./gradlew --version
+      - name: Setup Gradle 9.5
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.5'
 
-      - name: Validate SCHAGLK project
+      - name: Verify environment
         run: |
+          java -version
+          gradle --version
+          echo "ANDROID_HOME=$ANDROID_HOME"
           test -f settings.gradle
           test -f build.gradle
           test -f app/build.gradle
           test -f app/src/main/AndroidManifest.xml
           test -f app/src/main/java/com/schaglk/studio/MainActivity.java
 
-      - name: Build SCHAGLK APK
+      - name: Build APK
         run: |
-          ./gradlew :app:assembleDebug --stacktrace
+          gradle :app:assembleDebug --stacktrace
 
-      - name: Upload SCHAGLK APK
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: SCHAGLK-debug-apk
