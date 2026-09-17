@@ -1,0 +1,14 @@
+{
+  "engine":"SCHAGLK AI",
+  "mode":"tool-enabled",
+  "tools":{
+    "files":["read","write","create","rename","delete"],
+    "terminal":["execute","inspect","logs"],
+    "projects":["create","analyze"],
+    "tests":["run","inspect"],
+    "build":["detect","prepare","build"],
+    "git":["status","diff","commit","pull","push","clone"],
+    "diagnostics":["scan","report"]
+  },
+  "rule":"Never report an operation as successful unless its command/tool actually returned success."
+}

@@ -1,0 +1,13 @@
+{
+  "name":"SCHAGLK Terminal",
+  "version":2,
+  "workspaceOnly":true,
+  "history":true,
+  "processExecution":true,
+  "stdout":true,
+  "stderr":true,
+  "logs":true,
+  "interactive":true,
+  "dangerousDeleteConfirmation":true,
+  "defaultShell":"bash"
+}

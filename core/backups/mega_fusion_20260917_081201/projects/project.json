@@ -1,0 +1,6 @@
+{
+  "name": "SCHAGLK Project",
+  "version": 1,
+  "targets": ["web","python","cpp","android","game2d","game3d","pc"],
+  "livePreview": true
+}

@@ -1,0 +1,13 @@
+{
+  "android":{"required":["java","javac","gradle","aapt2"],"outputs":["apk","aab"]},
+  "web":{"required":[],"outputs":["dist"]},
+  "python":{"required":["python"],"outputs":["script","package"]},
+  "cpp":{"required":["clang"],"outputs":["native"]},
+  "2d":{"status":"engine-dependent"},
+  "3d":{"status":"engine-dependent"},
+  "pc":{"status":"target-toolchain-dependent"},
+  "rust":{"status":"toolchain-dependent"},
+  "go":{"status":"toolchain-dependent"},
+  "php":{"status":"runtime-dependent"},
+  "typescript":{"status":"node-toolchain-dependent"}
+}

@@ -1,0 +1,7 @@
+{
+  "workspaceOnlyByDefault": true,
+  "dangerousCommandsRequireConfirmation": true,
+  "networkAccessExplicit": true,
+  "deleteRequiresConfirmation": true,
+  "buildLogsRequired": true
+}

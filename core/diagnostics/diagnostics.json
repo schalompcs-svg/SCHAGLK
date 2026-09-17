@@ -1,0 +1,5 @@
+{
+  "levels":["INFO","WARNING","ERROR"],
+  "sources":["editor","terminal","build","tests","ai","live"],
+  "storeLogs":true
+}

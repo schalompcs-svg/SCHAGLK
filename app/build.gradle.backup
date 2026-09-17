@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.schaglk.studio'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.schaglk.studio'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+}

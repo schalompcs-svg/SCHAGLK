@@ -1,0 +1,38 @@
+{
+  "name": "SCHAGLK AI",
+  "version": "1.0",
+  "status": "integration-ready",
+  "capabilities": [
+    "project-analysis",
+    "code-generation",
+    "code-explanation",
+    "multi-file-editing",
+    "error-diagnosis",
+    "test-generation",
+    "log-analysis",
+    "dependency-analysis",
+    "build-assistance",
+    "terminal-assistance"
+  ],
+  "languages": [
+    "HTML", "CSS", "JavaScript", "TypeScript",
+    "Python", "Java", "Kotlin", "C", "C++",
+    "C#", "Go", "Rust", "PHP", "SQL",
+    "Bash", "JSON", "XML", "YAML"
+  ],
+  "tools": [
+    "files",
+    "terminal",
+    "projects",
+    "tests",
+    "diagnostics",
+    "build",
+    "git",
+    "github"
+  ],
+  "rules": {
+    "never_fake_tool_result": true,
+    "never_claim_unexecuted_build": true,
+    "dangerous_actions_require_confirmation": true
+  }
+}

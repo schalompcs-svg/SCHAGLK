@@ -1,0 +1,10 @@
+{
+  "multifile": true,
+  "tabs": true,
+  "undoRedo": true,
+  "searchReplace": true,
+  "lineNumbers": true,
+  "syntaxModes": ["html","css","javascript","typescript","python","java","kotlin","c","cpp","rust","go","php","json","xml","bash"],
+  "autosave": false,
+  "diagnostics": true
+}

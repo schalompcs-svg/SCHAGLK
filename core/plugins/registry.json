@@ -1,0 +1,14 @@
+{
+  "version":1,
+  "plugins":[],
+  "pluginTypes":[
+    "language",
+    "formatter",
+    "linter",
+    "builder",
+    "game-engine",
+    "android-toolchain",
+    "pc-toolchain",
+    "ai-provider"
+  ]
+}

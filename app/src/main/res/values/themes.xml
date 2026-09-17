@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.Schaglk" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">@color/schaglk_blue</item>
+        <item name="android:navigationBarColor">@color/schaglk_bg</item>
+        <item name="android:statusBarColor">@color/schaglk_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

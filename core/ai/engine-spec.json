@@ -1,0 +1,23 @@
+{
+  "name":"SCHAGLK AI",
+  "capabilities":[
+    "project-analysis",
+    "multi-file-editing",
+    "code-generation",
+    "code-explanation",
+    "error-diagnosis",
+    "test-generation",
+    "build-assistance",
+    "log-analysis",
+    "dependency-analysis"
+  ],
+  "tools":[
+    "files",
+    "terminal",
+    "editor",
+    "tests",
+    "build",
+    "git"
+  ],
+  "policy":"Never claim a tool result that was not actually executed."
+}

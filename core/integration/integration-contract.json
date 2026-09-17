@@ -1,0 +1,20 @@
+{
+  "name": "SCHAGLK Integration",
+  "version": "3.0",
+  "terminal": true,
+  "editor": true,
+  "files": true,
+  "projects": true,
+  "ai": true,
+  "live": true,
+  "build": true,
+  "tests": true,
+  "git": true,
+  "github": true,
+  "diagnostics": true,
+  "devices": true,
+  "plugins": true,
+  "factory": true,
+  "apkBuild": false,
+  "samsungTest": false
+}

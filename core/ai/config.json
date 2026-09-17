@@ -1,0 +1,16 @@
+{
+  "enabled":true,
+  "mode":"provider",
+  "provider":"",
+  "endpoint":"",
+  "model":"",
+  "apiKeyEnv":"",
+  "toolsEnabled":true,
+  "projectAccess":true,
+  "terminalAccess":true,
+  "fileAccess":true,
+  "buildAccess":true,
+  "testAccess":true,
+  "gitAccess":true,
+  "confirmationRequiredForDangerousActions":true
+}

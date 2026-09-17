@@ -1,0 +1,1 @@
+console.log("SCHAGLK WEB PROJECT READY");

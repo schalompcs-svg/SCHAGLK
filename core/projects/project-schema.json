@@ -1,0 +1,13 @@
+{
+  "name":"",
+  "type":"web",
+  "version":"1.0.0",
+  "entry":"",
+  "languages":[],
+  "dependencies":[],
+  "targets":[],
+  "build":{},
+  "tests":{},
+  "livePreview":true,
+  "git":true
+}
