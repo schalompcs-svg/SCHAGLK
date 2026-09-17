@@ -4,6 +4,8 @@ import android.app.*;
 import android.os.*;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.webkit.*;
 import android.view.*;
 import android.view.inputmethod.EditorInfo;
@@ -26,6 +28,11 @@ public class MainActivity extends Activity {
     File workspace, currentFile;
     ArrayList<File> openFiles=new ArrayList<>();
     int currentTab=-1;
+
+    final ArrayDeque<String> undoStack=new ArrayDeque<>();
+    final ArrayDeque<String> redoStack=new ArrayDeque<>();
+    boolean historySuppressed=false;
+    static final int MAX_HISTORY=100;
 
     @Override public void onCreate(Bundle b){
         super.onCreate(b);
@@ -115,8 +122,8 @@ public class MainActivity extends Activity {
                     case "NOUVEAU": createFileDialog(); break;
                     case "OUVRIR": refreshFiles(); break;
                     case "SAUVER": save(); break;
-                    case "UNDO": editor.undo(); break;
-                    case "REDO": editor.redo(); break;
+                    case "UNDO": undo(); break;
+                    case "REDO": redo(); break;
                     case "CHERCHER": findDialog(); break;
                     case "TEST": preview(); break;
                 }
@@ -135,6 +142,23 @@ public class MainActivity extends Activity {
         editor.setPadding(12,12,12,12);
         editor.setTypeface(Typeface.MONOSPACE);
         editor.setInputType(131073);
+
+        editor.addTextChangedListener(new TextWatcher(){
+            @Override public void beforeTextChanged(CharSequence s,int start,int count,int after){
+                if(historySuppressed)return;
+                if(count==0 && after==0)return;
+                if(undoStack.size()>=MAX_HISTORY)undoStack.removeFirst();
+                undoStack.addLast(s.toString());
+            }
+
+            @Override public void onTextChanged(CharSequence s,int start,int before,int count){}
+
+            @Override public void afterTextChanged(Editable e){
+                if(historySuppressed)return;
+                redoStack.clear();
+            }
+        });
+
         center.addView(editor,new LinearLayout.LayoutParams(-1,0,1));
 
         status=label("Ligne 1  |  SCHAGLK",11);
@@ -184,6 +208,45 @@ public class MainActivity extends Activity {
         setContentView(root);
     }
 
+    void setEditorTextFromHistory(String text){
+        historySuppressed=true;
+        editor.setText(text);
+        editor.setSelection(text.length());
+        historySuppressed=false;
+    }
+
+    void undo(){
+        if(undoStack.isEmpty()){
+            out("UNDO: rien à annuler");
+            return;
+        }
+
+        String current=editor.getText().toString();
+        String previous=undoStack.removeLast();
+
+        if(redoStack.size()>=MAX_HISTORY)redoStack.removeFirst();
+        redoStack.addLast(current);
+
+        setEditorTextFromHistory(previous);
+        out("UNDO: OK");
+    }
+
+    void redo(){
+        if(redoStack.isEmpty()){
+            out("REDO: rien à rétablir");
+            return;
+        }
+
+        String current=editor.getText().toString();
+        String next=redoStack.removeLast();
+
+        if(undoStack.size()>=MAX_HISTORY)undoStack.removeFirst();
+        undoStack.addLast(current);
+
+        setEditorTextFromHistory(next);
+        out("REDO: OK");
+    }
+
     void ensureStarter(){
         File f=new File(workspace,"index.html");
         if(!f.exists()) write(f,
@@ -219,7 +282,13 @@ public class MainActivity extends Activity {
         currentFile=f;
         if(!openFiles.contains(f))openFiles.add(f);
         currentTab=openFiles.indexOf(f);
+
+        historySuppressed=true;
         editor.setText(read(f));
+        historySuppressed=false;
+        undoStack.clear();
+        redoStack.clear();
+
         refreshTabs();
         if(f.getName().endsWith(".html")||f.getName().endsWith(".htm"))preview();
         status.setText("  "+f.getAbsolutePath());
